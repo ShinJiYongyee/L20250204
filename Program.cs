@@ -4,24 +4,23 @@
     {
         static void Main(string[] args)
         {
-            int[] array=new int[52];
-            for(int i=0; i<array.Length; i++)
-            {
-                array[i] = i+1;
-            }
 
             Random random = new();
 
-            //Fisher-Yates shuffle
-            for (int i = 0; i < 8; i++)
+            //확률 10퍼센트 가챠 메커니즘
+            for (int i = 0; i < 10; i++) 
             {
-                int randomIndex=random.Next(i,array.Length);
-                //tuple을 이용한 swap
-                (array[i], array[randomIndex]) = (array[randomIndex], array[i]);
-                Console.WriteLine($"{array[i]}");
+                int gacha=random.Next(0,100);
 
+                if (gacha <= 9)
+                {
+                    Console.WriteLine("픽업 성공");
+                }
+                else 
+                {
+                    Console.WriteLine("꽝");
+                }
             }
-
 
         }
     }
