@@ -4,6 +4,29 @@ namespace L20250204
 {
     internal class Program
     {
+        static string[] MakeDeck(string[] deck)
+        {
+            int[] index = new int[52];
+            Random random = new Random();
+
+            for (int i = 0; i < index.Length; i++)
+            {
+                index[i] = i + 1;
+            }
+
+            for (int i = 0; i < index.Length; i++)
+            {
+                int randomNumber = random.Next(i, 52);
+                (index[i], index[randomNumber]) = (index[randomNumber], index[i]);
+            }
+
+            for (int i = 0; i < deck.Length; i++)
+            {
+
+                deck[i] = TrumpSuit(index[i]) + " " + Numbering(index[i]);
+            }
+            return deck;
+        }
         static string Numbering(int a)
         {
             if (a%13 == 1)
@@ -51,6 +74,14 @@ namespace L20250204
                 return " ";
             }
         }
+        static void Print(string[] deck, int number)
+        {
+
+            for(int i = 0;i < number; i++)
+            {
+                Console.WriteLine(deck[i]);
+            }
+        }
         static void Main(string[] args)
         {
 
@@ -59,31 +90,11 @@ namespace L20250204
             //27 -> 39 : clover
             //40 -> 52 : spade
 
-            int[] index = new int[52];
-            Random random = new Random();
             string[] deck = new string[52];
 
-            for(int i = 0; i < index.Length; i++)
-            {
-                index[i] = i+1;
-            }
+            MakeDeck(deck);
 
-            for (int i = 0; i < index.Length; i++)
-            {
-                int randomNumber = random.Next(0, 51);
-                (index[i], index[randomNumber])=(index[randomNumber],index[i]);
-            }
-
-            for (int i = 0; i < deck.Length; i++)
-            {
-
-                deck[i] = TrumpSuit(index[i]) +" "+ Numbering(index[i]);
-            }
-
-            for(int i = 0;i < 8; i++)
-            {
-                Console.WriteLine(deck[i]);
-            }
+            Print(deck, 8);
 
         }
     }
