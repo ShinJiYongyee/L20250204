@@ -13,7 +13,8 @@ namespace L20250204
             //A = 11
             //2~10 = 2~10
             //J, K, Q = 10
-            switch (a % 13)
+            int value = ((a - 1) % 13) + 1;
+            switch (value)
             {
                 case 1:
                     return 11;  //A
@@ -24,31 +25,32 @@ namespace L20250204
                 case 0:
                     return 10;  //K
                 default:
-                    return a%13;   //2~9
+                    return value;   //2~10
             }
         }
 
         static string Numbering(int a)
         {
-            if (a%13 == 1)
+            int value = ((a - 1) % 13) + 1;
+            if (value == 1)
             {
                 return "A";
             }
-            else if (a%13 == 11)
+            else if (value == 11)
             {
                 return "J";
             }
-            else if(a%13 == 12)
+            else if(value == 12)
             {
                 return "Q";
             }
-            else if(a %13 == 0)
+            else if(value == 0 || value == 13)
             {
                 return "K";
             }
             else
             {
-                return $"{a%13}";
+                return $"{value}";
             }
         }
 
@@ -89,15 +91,26 @@ namespace L20250204
 
             Console.WriteLine($"computerScore: {computerScore}");
             Console.WriteLine($"playerScore: {playerScore}");
-            if (computerScore > playerScore)
-            {
-                Console.WriteLine("computer win!");
-            }
-            else 
+            if (computerScore > 21 && playerScore <= 21)
             {
                 Console.WriteLine("player win!");
             }
-
+            else if(computerScore <= 21 && playerScore > 21) 
+            {
+                Console.WriteLine("computer win!");
+            }
+            else if(playerScore > 21 && computerScore > 21)
+            {
+                Console.WriteLine("computer win!");
+            }
+            else if ((21 - playerScore) < (21 - computerScore))
+            {
+                Console.WriteLine("player win!");
+            }
+            else
+            {
+                Console.WriteLine("computer win!");
+            }
 
         }
         static int[] MakeDeck(int[] deckScore, int[] deckName)
