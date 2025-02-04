@@ -9,22 +9,25 @@
             {
                 array[i] = i+1;
             }
+            int[] newArray=new int[8];
 
             Random random = new Random();
 
             //Fisher-Yates shuffle
-            for (int i = 0; i < array.Length; i++)
+            for (int i = 0; i < newArray.Length; i++)
             {
-                int randomIndex=random.Next(array.Length);
+                int randomIndex=random.Next(i,array.Length);
+                newArray[i] = array[randomIndex];
+
                 int temp=array[randomIndex];
-                array[randomIndex] = array[i];
+                array[randomIndex]=array[i];
                 array[i]=temp;
             }
 
             //print
             for (int i = 0;i < 8; i++)
             {
-                Console.WriteLine($"{array[i]}");
+                Console.WriteLine($"{newArray[i]}");
             }
         }
     }
