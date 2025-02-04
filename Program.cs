@@ -16,11 +16,8 @@
             for (int i = 0; i < 8; i++)
             {
                 int randomIndex=random.Next(i,array.Length);
-
-                int temp=array[randomIndex];
-                array[randomIndex]=array[i];
-                array[i]=temp;
-
+                //tuple을 이용한 swap
+                (array[i], array[randomIndex]) = (array[randomIndex], array[i]);
                 Console.WriteLine($"{array[i]}");
 
             }
